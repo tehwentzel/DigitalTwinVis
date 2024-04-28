@@ -3,20 +3,19 @@ networks:
     driver: bridge
 
 services:
-  # digitaltwinproxy:
-  #   container_name: digitaltwinproxy
-  #   image: nginx
-  #   restart: always
-  #   ports:
-  #     - 443:443
-  #     - 80:80
-  #   volumes:
-  #     # - ./docker/proxy/service-example/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./data/_.evl.uic.edu.key:/etc/ssl/evl.key
-  #     - ./data/_.evl.uic.edu.crt:/etc/ssl/evl.crt
-  #     - ./docker/proxy/https-forwarding.conf:/etc/nginx/conf.d/https-forwarding.conf
-  #   networks: 
-  #     - example
+  digitaltwinproxy:
+    container_name: digitaltwinproxy
+    image: nginx
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - ./data/_.evl.uic.edu.key:/etc/ssl/evl.key
+      - ./data/_.evl.uic.edu.crt:/etc/ssl/evl.crt
+      - ./docker/proxy/https-forwarding.conf:/etc/nginx/conf.d/https-forwarding.conf
+    networks: 
+      - example
   digitaltwinfrontend:
     container_name: digitaltwinfrontend
     restart: unless-stopped
